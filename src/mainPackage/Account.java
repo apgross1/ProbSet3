@@ -6,7 +6,7 @@ public class Account {
 	private int id = 0;
 	private double balance = 0;
 	private double annualInterestRate = 0;
-	private Date dateCreated;
+	private Date dateCreated = new Date();
 	
 	public Account() {
 		
@@ -40,7 +40,7 @@ public class Account {
 	public void setAnnualInterestRate(double rate) {
 		this.annualInterestRate = rate;
 	}
-	
+	//Date changes every time you recompile...
 	public Date getDate() {
 		return this.dateCreated;
 	}
@@ -49,8 +49,14 @@ public class Account {
 		return ((this.getAnnualInterestRate())/12);
 	}
 	
-	public void withdraw(double amount) {
-		this.setBalance((this.getBalance())-amount);
+	public void withdraw(double amount) throws InsufficientFundsException {
+		if ((this.getBalance()-amount) >= 0) {
+			this.setBalance((this.getBalance())-amount);
+		}	
+		else {
+			double deficit = (this.getBalance()-amount);
+			throw new InsufficientFundsException(deficit);
+		}
 	}
 	
 	public void deposit(double amount) {
