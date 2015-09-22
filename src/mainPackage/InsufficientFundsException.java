@@ -5,7 +5,6 @@ public class InsufficientFundsException extends Exception {
 	
 	public InsufficientFundsException(double amt) {
 		this.amount = amt;
-		System.out.println("Insufficient funds.");
 	}
 	
 	public double getAmount() {
